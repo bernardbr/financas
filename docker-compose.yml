@@ -1,0 +1,25 @@
+version: "3.4"
+
+services: 
+    api-taxa-juros:
+        image: api-taxa-juros
+        build: "./taxaJuros"
+        restart: always
+        ports:
+            - "5000:80"
+        container_name: api-taxa-juros
+        environment: 
+            - ASPNETCORE_ENVIRONMENT=Development
+
+    api-calculo-juros:
+        image: api-calculo-juros
+        build: "./calculaJuros"
+        restart: always
+        ports:
+            - "5002:80"
+        container_name: api-calculo-juros
+        environment: 
+            - ASPNETCORE_ENVIRONMENT=Development
+            - TaxaJurosClient__Url=http://api-taxa-juros:80/
+            - TaxaJurosClient__DuracaoHandler=5
+
