@@ -1,6 +1,6 @@
 # Microsserviços de aplicações financeiras
 
-Prova de conceito que visa demonstrar como dois microsserviços podem interagir em um processo de cálculo de juros compostos, utilizando o padrão `Circuit Breaker` para tratar casos de falhas de comunicação entre APIs.
+Prova de conceito que visa demonstrar como dois microsserviços podem interagir em um processo de cálculo de juros compostos.
 
 ## Insights
 
@@ -27,7 +27,7 @@ Se for utilizada a instalação padrão do Docker, as APIs estarão disponíveis
 - Taxa de juros: `http://localhost:5000/`
 - Cálculo de juros: `http://localhost:5002/`
 
-**ATENÇÃO**: Se for utilizado o Docker Toolbox, será necesário descobrir o IP da máquina Docker através do comando `docker-machine ip`. Após isso, utilize no lugar de `localhost` nos endereços acima listados para poder acessar as respectivas APIs.
+Se for utilizado o Docker Toolbox, será necesário descobrir o IP da máquina Docker através do comando `docker-machine ip`. Após isso, utilize no lugar de `localhost` nos endereços acima listados para poder acessar as respectivas APIs.
 
 ### Sem Docker
 
@@ -58,4 +58,5 @@ dotnet run -p .\calculaJuros\CalculaJuros.Api\
 As duas APIs são autodocumentadas por meio do `Swagger`. Após serem iniciadas, é possível verificar suas respectivas documentações a partir da rota `/swagger` em cada uma delas.
 
 `http://localhost:5000/swagger` => Documentação da API de taxa de juros
+
 `http://localhost:5002/swagger` => Documentação da API de cálculo de juros
