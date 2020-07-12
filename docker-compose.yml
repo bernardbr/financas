@@ -3,7 +3,9 @@ version: "3.4"
 services: 
     api-taxa-juros:
         image: api-taxa-juros
-        build: "./taxaJuros"
+        build: 
+            context: .
+            dockerfile: Dockerfile-TaxaJuros
         restart: always
         ports:
             - "5000:80"
@@ -13,7 +15,9 @@ services:
 
     api-calculo-juros:
         image: api-calculo-juros
-        build: "./calculaJuros"
+        build:        
+            context: .
+            dockerfile: Dockerfile-CalculaJuros
         restart: always
         ports:
             - "5002:80"

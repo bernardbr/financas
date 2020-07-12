@@ -1,0 +1,21 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build
+
+ARG CONFIG=RELEASE
+ARG VERSAO=1.0.0
+
+WORKDIR /build
+
+COPY ./Financas.sln .
+COPY ./src/ ./src/
+COPY ./test/ ./test/
+RUN dotnet restore
+
+RUN dotnet publish ./src/CalculaJuros.Api/ -c ${CONFIG} -o out /p:Version=${VERSAO}
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
+WORKDIR /app
+EXPOSE 80
+
+COPY --from=build /build/out/. ./
+
+ENTRYPOINT ["dotnet", "CalculaJuros.Api.dll"]
